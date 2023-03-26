@@ -9,16 +9,24 @@
                 <div class="col-md-4 col-12 text-left">
                   <ul class="list-inline mb-0 text-xs-center">
                     <li class="list-inline-item">
-                      <img src="../assets/img/call-788193.png" class="img-responsive" />
+                      <img
+                        src="../assets/img/call-788193.png"
+                        class="img-responsive"
+                      />
                       +91-9950244446
                     </li>
                     <li class="list-inline-item">
-                      <img src="../assets/img/email-791162.png" class="img-responsive" />
+                      <img
+                        src="../assets/img/email-791162.png"
+                        class="img-responsive"
+                      />
                       groupSE2@gmail.com
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-4 col-12 text-center">Free shipping on orders over $100</div>
+                <div class="col-md-4 col-12 text-center">
+                  Free shipping on orders over $100
+                </div>
                 <div class="col-md-4 col-12"></div>
               </div>
             </div>
@@ -39,25 +47,13 @@
                 action="/products/search"
                 class="form-search"
                 id="ProductsSearchForm"
-                method="post"
-                accept-charset="utf-8"
               >
-                <div style="display: none">
-                  <input type="hidden" name="_method" value="POST" /><input
-                    type="hidden"
-                    name="data[_Token][key]"
-                    value="a5d3445e998a2429215fba369d353f188b98c5e34bf7ff9c9fd6353bbf745a54324e9947da2c52992c3a7e1f69095766bce01b205891cc8a9d470f4602e7a010"
-                    id="Token1077132254"
-                  />
-                </div>
                 <div id="searchbar" class="clearfix searchbar srch-pos-left">
                   <div class="input-group">
                     <input
-                      name="data[StoreProduct][keyword]"
                       id="keyword"
                       class="form-control search-input rounded-0 ui-autocomplete-input"
                       placeholder="Search keywords..."
-                      autocomplete="off"
                       type="text"
                     />
                     <div class="input-group-append">
@@ -84,35 +80,25 @@
                     </div>
                   </div>
                 </div>
-                <div style="display: none">
-                  <input
-                    type="hidden"
-                    name="data[_Token][fields]"
-                    value="e10b5a89b4a90f2633c2ec4cf18b3b5285f0207c%3A"
-                    id="TokenFields1525908501"
-                  /><input
-                    type="hidden"
-                    name="data[_Token][unlocked]"
-                    value=""
-                    id="TokenUnlocked485044831"
-                  />
-                </div>
               </form>
             </div>
             <div class="col-7 col-md-4 col-lg-6">
               <div class="logo-hold logo-pos-center">
                 <div id="logo">
-                  <a href="/" title="Home" class=""
-                    ><img
-                      src="../assets/img/logo-380047_header_logo.png"
-                      alt="victoria"
+                  <a href="/" title="Home" class="">
+                    <img
+                      src="../assets/img/DAS_DAB.png"
+                      alt="DAS&DAB"
                       class="img-fluid"
-                  /></a>
+                    />
+                  </a>
                 </div>
               </div>
             </div>
             <div class="col-5 col-md-4 col-lg-3">
-              <div class="d-flex justify-content-end align-items-center pull-right toppanel-hold">
+              <div
+                class="d-flex justify-content-end align-items-center pull-right toppanel-hold"
+              >
                 <div class="d-block d-md-none search-icon">
                   <a href="#" class="clerfix">
                     <svg
@@ -158,10 +144,14 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <path
+                        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                      ></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <a href="/customers/login">Login</a> or <a href="/customers/register">Signup</a>
+                    <a href="/customers/login">Login</a>
+                    or
+                    <a href="/customers/register">Signup</a>
                   </div>
                   <div class="top-login"></div>
                 </div>
@@ -195,7 +185,11 @@
                         title="Shopping Bag"
                         class="d-block px-1 cart-icon align-items-center"
                       >
-                        <span class="position-absolute rounded-circle badge badge-primary">0</span>
+                        <span
+                          class="position-absolute rounded-circle badge badge-primary"
+                        >
+                          0
+                        </span>
                         <svg
                           class="mx-auto d-block"
                           viewBox="0 0 24 24"
@@ -207,7 +201,9 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                         >
-                          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                          <path
+                            d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                          ></path>
                           <line x1="3" y1="6" x2="21" y2="6"></line>
                           <path d="M16 10a4 4 0 0 1-8 0"></path>
                         </svg>
@@ -227,7 +223,8 @@
           <div class="main-nav navbar-collapse">
             <button class="nav-toggle">
               <div class="icon-menu">
-                <span class="line line-1"></span> <span class="line line-2"></span>
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
                 <span class="line line-3"></span>
               </div>
             </button>
@@ -236,19 +233,24 @@
                 <div class="currency-m-border clearfix">
                   <div class="d-flex">
                     <div class="w-50"></div>
-
                     <div class="w-75 ml-2">
                       <div
                         class="clear d-flex align-content-end flex-wrap text-center top-login-dtp"
                       >
                         <span class="mx-auto">
-                          <a href="/customers/login" class="btn btn-outline-primary rounded-0"
-                            >Login</a
+                          <a
+                            href="/customers/login"
+                            class="btn btn-outline-primary rounded-0"
                           >
+                            Login
+                          </a>
                           <span class="text-muted d-inline-block mx-2">Or</span>
-                          <a href="/customers/register" class="btn btn-outline-primary rounded-0"
-                            >Signup</a
+                          <a
+                            href="/customers/register"
+                            class="btn btn-outline-primary rounded-0"
                           >
+                            Signup
+                          </a>
                         </span>
                       </div>
                       <div
@@ -259,99 +261,55 @@
                 </div>
               </div>
               <ul class="list-inline justify-content-center nav nav-menu menu">
-                <li class="menu-item list-inline-item"><a href="/" class="menu-link">Home</a></li>
-                <li class="menu-item"><a href="/categories/rings" class="menu-link">Rings</a></li>
-                <li class="menu-item">
-                  <a href="/categories/earrings" class="menu-link">Earrings</a>
-                </li>
-                <li class="menu-item">
-                  <a href="/categories/bracelets" class="menu-link">Bracelets</a>
-                </li>
-                <li class="menu-item">
-                  <a href="/categories/necklace" class="menu-link">Necklace</a>
-                </li>
-
                 <li class="menu-item list-inline-item">
-                  <a href="/blog/" class="menu-link">Blog</a>
+                  <!-- <a href="/" class="menu-link">Home</a> -->
+                  <router-link to="/" class="menu-link">Home</router-link>
                 </li>
+                <li class="menu-item">
+                  <div class="dropdown show">
+                    <a
+                    class=" dropdown-toggle menu-link"
+                    href="#"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Categories
+                  </a>
 
-                <li class="menu-item list-inline-item">
-                  <a href="/pages/contact" class="menu-link">Contact Us</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div class="menu-bar cloned" style="position: fixed; top: 0px; z-index: 500; display: none">
-        <nav class="nav" role="navigation">
-          <div class="main-nav navbar-collapse">
-            <button class="nav-toggle">
-              <div class="icon-menu">
-                <span class="line line-1"></span> <span class="line line-2"></span>
-                <span class="line line-3"></span>
-              </div>
-            </button>
-            <div class="nav-container">
-              <div class="d-block d-md-none clearfix mx-2">
-                <div class="currency-m-border clearfix">
-                  <div class="d-flex">
-                    <div class="w-50"></div>
-
-                    <div class="w-75 ml-2">
-                      <div
-                        class="clear d-flex align-content-end flex-wrap text-center top-login-dtp"
-                      >
-                        <span class="mx-auto">
-                          <a href="/customers/login" class="btn btn-outline-primary rounded-0"
-                            >Login</a
-                          >
-                          <span class="text-muted d-inline-block mx-2">Or</span>
-                          <a href="/customers/register" class="btn btn-outline-primary rounded-0"
-                            >Signup</a
-                          >
-                        </span>
-                      </div>
-                      <div
-                        class="d-flex align-content-end flex-wrap text-center top-login clearfix"
-                      ></div>
-                    </div>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <router-link to="/rings" class="dropdown-item ">Rings</router-link>
+                    <router-link to="/earings" class="dropdown-item">Earings</router-link>
+                    <router-link class="dropdown-item" to="/bracelets">Bracelets</router-link>
+                    <router-link class="dropdown-item" to="/necklace">Necklace</router-link>
                   </div>
-                </div>
-              </div>
-              <ul class="list-inline justify-content-center nav nav-menu menu">
-                <li class="menu-item list-inline-item"><a href="/" class="menu-link">Home</a></li>
-                <li class="menu-item"><a href="/categories/rings" class="menu-link">Rings</a></li>
-                <li class="menu-item">
-                  <a href="/categories/earrings" class="menu-link">Earrings</a>
-                </li>
-                <li class="menu-item">
-                  <a href="/categories/bracelets" class="menu-link">Bracelets</a>
-                </li>
-                <li class="menu-item">
-                  <a href="/categories/necklace" class="menu-link">Necklace</a>
+                  </div>
+                  
                 </li>
 
                 <li class="menu-item list-inline-item">
-                  <a href="/blog/" class="menu-link">Blog</a>
+                  <router-link to="/blog" class="menu-link">Blog</router-link>
                 </li>
 
                 <li class="menu-item list-inline-item">
-                  <a href="/pages/contact" class="menu-link">Contact Us</a>
+                  <router-link to="/contact" class="menu-link">Contact Us</router-link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
+
     </div>
   </header>
 </template>
-<script setup></script>
+<script setup>
+</script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .header-txt,
 .header-topbar,
@@ -393,7 +351,7 @@ a {
   color: #000000;
 }
 .menu-link {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 a:hover,
@@ -488,5 +446,10 @@ a:hover,
 .input-group-prepend {
   display: -ms-flexbox;
   display: flex;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    height: fit-content;
 }
 </style>
