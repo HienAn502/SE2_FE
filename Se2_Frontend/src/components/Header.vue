@@ -149,9 +149,13 @@
                       ></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <a href="/customers/login">Login</a>
+                    <router-link to="/login">
+                          Login
+                        </router-link>
                     or
-                    <a href="/customers/register">Signup</a>
+                    <router-link to="/signup">
+                          Signup
+                        </router-link>
                   </div>
                   <div class="top-login"></div>
                 </div>
@@ -245,12 +249,10 @@
                             Login
                           </a>
                           <span class="text-muted d-inline-block mx-2">Or</span>
-                          <a
-                            href="/customers/register"
-                            class="btn btn-outline-primary rounded-0"
-                          >
+                          <router-link to="/signup"  class="btn btn-outline-primary rounded-0">
+                          
                             Signup
-                          </a>
+                          </router-link>
                         </span>
                       </div>
                       <div

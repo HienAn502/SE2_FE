@@ -7,6 +7,9 @@ import Bracelets from "../views/Bracelets.vue"
 import Rings from "../views/Rings.vue"
 import Necklace from "../views/Necklace.vue"
 import Earings from "../views/Earings.vue"
+import About from "../views/About.vue"
+import SignUp from "../components/SignUp.vue"
+
 const routes = [{
         path: '/',
         component: Home
@@ -31,6 +34,14 @@ const routes = [{
     {
         path: '/necklace',
         component: Necklace
+    },
+    {
+        path: '/about',
+        component: About
+    },
+    {
+        path: '/signup',
+        component: SignUp
     }
 ]
 const router = createRouter({

@@ -124,7 +124,7 @@
                       <div class="f-nav">
                         <h5>Information</h5>
                         <ul class="m-0 list-unstyled">
-                          <li><a href="/pages/about-us">About Us</a></li>
+                          <li><router-link to="/about">About Us</router-link></li>
                         </ul>
                       </div>
                     </div>
@@ -228,5 +228,8 @@
 }
 .clearfix {
   margin-left: 20px;
+}
+a {
+  text-decoration: none;
 }
 </style>
