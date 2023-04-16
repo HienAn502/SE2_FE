@@ -242,12 +242,10 @@
                         class="clear d-flex align-content-end flex-wrap text-center top-login-dtp"
                       >
                         <span class="mx-auto">
-                          <a
-                            href="/customers/login"
-                            class="btn btn-outline-primary rounded-0"
-                          >
+                          <router-link to="/login" class="btn btn-outline-primary rounded-0">
+                            
                             Login
-                          </a>
+                          </router-link>
                           <span class="text-muted d-inline-block mx-2">Or</span>
                           <router-link to="/signup"  class="btn btn-outline-primary rounded-0">
                           

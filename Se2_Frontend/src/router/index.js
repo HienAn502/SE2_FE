@@ -9,6 +9,7 @@ import Necklace from "../views/Necklace.vue"
 import Earings from "../views/Earings.vue"
 import About from "../views/About.vue"
 import SignUp from "../components/SignUp.vue"
+import Login from "../components/Login.vue"
 
 const routes = [{
         path: '/',
@@ -42,6 +43,10 @@ const routes = [{
     {
         path: '/signup',
         component: SignUp
+    },
+    {
+        path: '/login',
+        component: Login
     }
 ]
 const router = createRouter({
