@@ -233,6 +233,7 @@
               </div>
             </button>
             <div class="nav-container">
+<<<<<<< Updated upstream
               <div class="d-block d-md-none clearfix mx-2">
                 <div class="currency-m-border clearfix">
                   <div class="d-flex">
@@ -260,6 +261,8 @@
                   </div>
                 </div>
               </div>
+=======
+>>>>>>> Stashed changes
               <ul class="list-inline justify-content-center nav nav-menu menu">
                 <li class="menu-item list-inline-item">
                   <!-- <a href="/" class="menu-link">Home</a> -->
