@@ -189,7 +189,6 @@
                   <a href="/products/minimalist-beaded-two-tone-wedding-ring-1">
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/r6-529287_m.jpg"
                         alt="Minimalist Beaded Two Tone Wedding Ring"
                         class="img-fluid"
                       />
@@ -282,7 +281,7 @@
                   <a href="/products/antique-bridesmaid-wedding-ring">
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/19-945712_m.jpg"
+                        
                         alt="Antique Bridesmaid Wedding Ring"
                         class="img-fluid"
                       />
@@ -375,7 +374,7 @@
                   <a href="/products/victoria-forever-eternity-ring">
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/28-961363_m.jpg"
+                       
                         alt="Victoria Forever Eternity Ring"
                         class="img-fluid"
                       />
@@ -468,7 +467,7 @@
                   <a href="/products/victoria-green-diamond-earring">
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/6-992526_m.jpg"
+                    
                         alt="Victoria Green Diamond Earring"
                         class="img-fluid"
                       />
@@ -563,7 +562,7 @@
                   >
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/r9-674672_m.jpg"
+                      
                         alt="Vintage Citrine AA Gemstone Ring, Unique Bridal Wedding Ring"
                         class="img-fluid"
                       />
@@ -659,7 +658,7 @@
                   >
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/sddvs-798103_m.jpg"
+                      
                         alt="14k Yellow Gold Diamond Screw Back Earring"
                         class="img-fluid"
                       />
@@ -752,7 +751,7 @@
                   <a href="/products/vintage-gold-floral-earrings-for-her">
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/erw-606401_m.jpg"
+                       
                         alt="Vintage Gold Floral Earrings for Her"
                         class="img-fluid"
                       />
@@ -847,7 +846,7 @@
                   >
                     <figure class="overflow-hidden">
                       <img
-                        src="/uploads/victoria/products/22-909290_m.jpg"
+                      
                         alt="Heart Shape Gemstone Stud Earring, Statement Bridal Partywear Earring"
                         class="img-fluid"
                       />

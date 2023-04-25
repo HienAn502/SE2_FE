@@ -1,16 +1,4 @@
 <template>
-  <div>
-    <div class="container" v-for="product in infor" :key="product.id" >
-      <img :src="product.imageURL" alt="" />
-      <div class="price">
-         <p> {{ product.price }} </p>
-      </div>
-     <div class="name">
-       {{ product.name }} 
-     </div> 
-    </div>
-  </div>
- 
   <router-view></router-view>
 </template>
 
@@ -36,13 +24,13 @@ import axios  from 'axios'
 // getData();
 
 // sử dụng axios
-const infor = ref([])
-const getData = async () => {
-   const repsonse = await axios.get('https://limitless-lake-55070.herokuapp.com/product/')
-   const data = await repsonse.data
-   infor.value = data.slice(0,8)
-}
-getData()
+// const infor = ref([])
+// const getData = async () => {
+//    const repsonse = await axios.get('https://limitless-lake-55070.herokuapp.com/product/')
+//    const data = await repsonse.data
+//    infor.value = data.slice(0,8)
+// }
+// getData()
 </script>
 
 <style scoped> 

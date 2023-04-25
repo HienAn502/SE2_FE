@@ -149,13 +149,35 @@
                       ></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <router-link to="/login">
-                          Login
-                        </router-link>
-                    or
-                    <router-link to="/signup">
-                          Signup
-                        </router-link>
+                    <router-link to="/login" v-if="!isAuthenticated">
+                      Login or
+                    </router-link>
+
+                    <router-link to="/signup" v-if="!isAuthenticated">
+                      Signup
+                    </router-link>
+                  </div>
+                  <div v-if="isAuthenticated">
+                    <div class="dropdown">
+                      <button
+                        class="dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Hi {{ lastname }}
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <a class="dropdown-item" @click.prevent="logout">
+                          Logout
+                        </a>
+                      </div>
+                    </div>
                   </div>
                   <div class="top-login"></div>
                 </div>
@@ -233,7 +255,6 @@
               </div>
             </button>
             <div class="nav-container">
-<<<<<<< Updated upstream
               <div class="d-block d-md-none clearfix mx-2">
                 <div class="currency-m-border clearfix">
                   <div class="d-flex">
@@ -243,13 +264,17 @@
                         class="clear d-flex align-content-end flex-wrap text-center top-login-dtp"
                       >
                         <span class="mx-auto">
-                          <router-link to="/login" class="btn btn-outline-primary rounded-0">
-                            
+                          <router-link
+                            to="/login"
+                            class="btn btn-outline-primary rounded-0"
+                          >
                             Login
                           </router-link>
                           <span class="text-muted d-inline-block mx-2">Or</span>
-                          <router-link to="/signup"  class="btn btn-outline-primary rounded-0">
-                          
+                          <router-link
+                            to="/signup"
+                            class="btn btn-outline-primary rounded-0"
+                          >
                             Signup
                           </router-link>
                         </span>
@@ -261,8 +286,7 @@
                   </div>
                 </div>
               </div>
-=======
->>>>>>> Stashed changes
+
               <ul class="list-inline justify-content-center nav nav-menu menu">
                 <li class="menu-item list-inline-item">
                   <!-- <a href="/" class="menu-link">Home</a> -->
@@ -271,24 +295,34 @@
                 <li class="menu-item">
                   <div class="dropdown show">
                     <a
-                    class=" dropdown-toggle menu-link"
-                    href="#"
-                    id="dropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Categories
-                  </a>
+                      class="dropdown-toggle menu-link"
+                      href="#"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Categories
+                    </a>
 
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <router-link to="/rings" class="dropdown-item ">Rings</router-link>
-                    <router-link to="/earings" class="dropdown-item">Earings</router-link>
-                    <router-link class="dropdown-item" to="/bracelets">Bracelets</router-link>
-                    <router-link class="dropdown-item" to="/necklace">Necklace</router-link>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <router-link to="/rings" class="dropdown-item">
+                        Rings
+                      </router-link>
+                      <router-link to="/earings" class="dropdown-item">
+                        Earings
+                      </router-link>
+                      <router-link class="dropdown-item" to="/bracelets">
+                        Bracelets
+                      </router-link>
+                      <router-link class="dropdown-item" to="/necklace">
+                        Necklace
+                      </router-link>
+                    </div>
                   </div>
-                  </div>
-                  
                 </li>
 
                 <li class="menu-item list-inline-item">
@@ -296,18 +330,46 @@
                 </li>
 
                 <li class="menu-item list-inline-item">
-                  <router-link to="/contact" class="menu-link">Contact Us</router-link>
+                  <router-link to="/contact" class="menu-link">
+                    Contact Us
+                  </router-link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
-
     </div>
   </header>
 </template>
-<script setup>
+<script>
+export default {
+  data() {
+    return {
+      isAuthenticated: "",
+      lastname: ""
+    };
+  },
+  created() {
+    // Check if the user is already logged in
+    const user_infor = localStorage.getItem("user_lastname");
+    const authen = localStorage.getItem("isAuthenticated");
+    console.log(user_infor);
+    if (authen) {
+      (this.isAuthenticated = true), (this.lastname = user_infor);
+      this.$router.push("/");
+    }
+  },
+  methods: {
+    logout() {
+      // Remove the 'isAuthenticated' and 'username' items from Local Storage
+      localStorage.removeItem("isAuthenticated");
+      // Redirect to the login page or any other page
+      this.$router.push("/");
+      location.reload();
+    }
+  }
+};
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap");
@@ -451,8 +513,8 @@ a:hover,
   display: flex;
 }
 .img-fluid {
-    max-width: 100%;
-    height: auto;
-    height: fit-content;
+  max-width: 100%;
+  height: auto;
+  height: fit-content;
 }
 </style>
