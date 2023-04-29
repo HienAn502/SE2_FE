@@ -8,7 +8,7 @@
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-number">${{ product.price }}</p>
             <p class="card-text">{{ product.description }}</p>
-            <router-link to="/admin/product/edit" :to="{params: {id: product.id} }">
+            <router-link to="/admin/product/edit" >
                 <button class="btn btn-primary css-button">Edit</button>
             </router-link>
             <button class="btn btn-primary css-button1 txt">Delete</button>
