@@ -10,7 +10,7 @@
             <p class="card-text">{{ product.description }}</p>
             <router-link to="/admin/product/edit" :to="{params: {id: product.id} }">
                 <button class="btn btn-primary css-button">Edit</button>
-            </router-link><a href="" class="btn btn-primary css-button">Edit</a>
+            </router-link>
             <button class="btn btn-primary css-button1 txt">Delete</button>
         </div>
     </div>
