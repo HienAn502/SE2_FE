@@ -393,9 +393,9 @@
                   Sign in to your account to track your orders, manage your
                   addresses and check gift card amounts.
                 </p>
-                <a href="" class="btn btn-outline-primary btn-outline">
+                <router-link to="/login" class="btn btn-outline-primary btn-outline">
                   Sign In
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -436,14 +436,14 @@ export default {
             this.$router.push("/");
             swal({
               text: "User signup successfully",
-              icon: "Success"
+              icon: "success"
             });
           })
           .catch((err) => console.log("err", err));
       } else {
         swal({
           text: "Password do not match",
-          icon: "Error"
+          icon: "error"
         });
       }
     }
