@@ -149,15 +149,14 @@
                       ></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <router-link to="/login" v-if="!isAuthenticated">
+                    <router-link to="/login" v-if="!token">
                       Login or
                     </router-link>
-
-                    <router-link to="/signup" v-if="!isAuthenticated">
+                    <router-link to="/signup" v-if="!token">
                       Signup
                     </router-link>
                   </div>
-                  <div v-if="isAuthenticated">
+                  <div v-if="token">
                     <div class="dropdown">
                       <button
                         class="dropdown-toggle"
@@ -206,15 +205,11 @@
                 <div class="shoppingcart">
                   <div id="div-drop-cart" class="position-relative">
                     <div class="position-relative cd-cart-trigger">
-                      <a
-                        href="/store_carts/cart"
-                        title="Shopping Bag"
-                        class="d-block px-1 cart-icon align-items-center"
-                      >
+                      <router-link to="/cart" class="d-block px-1 cart-icon align-items-center"  title="Shopping Bag">
                         <span
                           class="position-absolute rounded-circle badge badge-primary"
                         >
-                          0
+                        {{ cartCount }}
                         </span>
                         <svg
                           class="mx-auto d-block"
@@ -234,7 +229,7 @@
                           <path d="M16 10a4 4 0 0 1-8 0"></path>
                         </svg>
                         <div class="w-100 d-none d-md-block">Cart</div>
-                      </a>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -292,8 +287,8 @@
                   <!-- <a href="/" class="menu-link">Home</a> -->
                   <router-link to="/" class="menu-link">Home</router-link>
                 </li>
-                <li class="menu-item">
-                  <div class="dropdown show">
+                <li class="menu-item" >
+                  <div class="dropdown show" >
                     <a
                       class="dropdown-toggle menu-link"
                       href="#"
@@ -301,6 +296,7 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
+                      
                     >
                       Categories
                     </a>
@@ -308,19 +304,18 @@
                     <div
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuLink"
+                     
                     >
-                      <router-link to="/rings" class="dropdown-item">
-                        Rings
+                      <router-link 
+                      v-for="category in categories" 
+                      :key="category.id"
+                      :to="{name : 'ListProduct', params:{categoryName : category.categoryName} }" 
+                      class="dropdown-item" 
+                      v-on:click="forcePageReload"
+                      >
+                        <p>{{ category.categoryName }}</p>
                       </router-link>
-                      <router-link to="/earings" class="dropdown-item">
-                        Earings
-                      </router-link>
-                      <router-link class="dropdown-item" to="/bracelets">
-                        Bracelets
-                      </router-link>
-                      <router-link class="dropdown-item" to="/necklace">
-                        Necklace
-                      </router-link>
+                     
                     </div>
                   </div>
                 </li>
@@ -344,30 +339,35 @@
 </template>
 <script>
 export default {
+  props: ["cartCount","categories","products"],
   data() {
     return {
-      isAuthenticated: "",
+      token:null,
       lastname: ""
     };
   },
-  created() {
-    // Check if the user is already logged in
-    const user_infor = localStorage.getItem("user_lastname");
-    const authen = localStorage.getItem("isAuthenticated");
-    console.log(user_infor);
-    if (authen) {
-      (this.isAuthenticated = true), (this.lastname = user_infor);
-      this.$router.push("/");
-    }
-  },
   methods: {
     logout() {
-      // Remove the 'isAuthenticated' and 'username' items from Local Storage
-      localStorage.removeItem("isAuthenticated");
+      // Remove the  and 'username' items from Local Storage
+      localStorage.removeItem("token")
+      this.token = null;
+      swal({
+        text: "Logged you out. Visit again",
+        icon: "success",
+      });
+      this.$emit("resetCartCount");
       // Redirect to the login page or any other page
       this.$router.push("/");
-      location.reload();
-    }
+      
+    },
+    forcePageReload() {
+    this.$emit("fetchData")
+    
+  }
+  },
+  mounted(){
+    this.token = localStorage.getItem("token");
+    this.lastname = localStorage.getItem("user_lastname")
   }
 };
 </script>

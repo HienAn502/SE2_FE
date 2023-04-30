@@ -11,7 +11,7 @@
                 <form>
                     <div class="form-group">
                         <label for="" class="mg-text">Category</label>
-                        <select name="" id="" class="form-control" v-model="categoryId">
+                        <select  class="form-control" v-model="categoryId">
                             <option v-for="category in categories" :key ="category.id"
                                     :value="category.id">{{category.categoryName}}</option>
                         </select>
@@ -22,15 +22,19 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Product Description</label>
-                        <textarea type="text" class="form-control" v-model="description"/>  
+                        <textarea type="text" class="form-control" v-model="description"></textarea>  
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Product Image</label>
-                        <input type="text" class="form-control" v-model="imageURL"/>    
+                        <input type="text" class="form-control" v-model="imageUrl"/>    
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Product Price</label>
                         <input type="number" class="form-control" v-model="price"/>    
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="mg-text">Product Discount Price</label>
+                        <input type="number" class="form-control" v-model="discount_price"/>    
                     </div>
                     <button type="button" class="btn btn-primary" @click = "addProduct">Submit</button>
                 </form>
@@ -43,41 +47,46 @@ import axios from 'axios'
 import swal from 'sweetalert'
 
 export default{
+    props : ["baseURL", "categories"],
     data(){
         return{
             product:{
                 id:"",
                 name:"",
                 description:"",
+                discount_price:"",
                 price:"",
                 categoryId:"",
-                imageURL:""
+                imageUrl:""
             },
             categories:[]
         }
     },
     created(){
-        axios.get('https://limitless-lake-55070.herokuapp.com/category/')
+        axios.get(`${this.baseURL}category/list`)
         .then(res => {this.categories = res.data})
         .catch(err => {console.log(err)});
     },
     methods: {
-        addProduct(){
+       async addProduct(){
             const newProduct = {
                 categoryId: this.categoryId,
                 name: this.name,
-                imageURL: this.imageURL,
+                discount_price: this.discount_price,
+                imageUrl: this.imageUrl,
                 description: this.description,
                 price: this.price
             };
 
-            axios.post("https://limitless-lake-55070.herokuapp.com/product/add/", newProduct)
+          await  axios.post(`${this.baseURL}product/add`, newProduct)
             .then((res) => {
-                this.$router.push('/admin/product');
+                console.log(res.message)
                 swal({
                     text: "Product added successfully",
-                    icon: "success"
+                    icon: "success",
+                    closeOnClickOutside: false,
                 })
+                this.$router.push('/admin/product');
             }).catch((err) => {
                 console.log("err", err);
             })

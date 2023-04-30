@@ -3,6 +3,17 @@ import axios from "axios";
 
 import swal from "sweetalert";
 export default {
+  emits: ['fetchData'],
+  props: {
+    products: {
+      type: Array,
+      required: true,
+    },
+    baseURL:{
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       showPassword: false,
@@ -18,15 +29,16 @@ export default {
         password: this.password
       };
       await axios
-        .post("https://limitless-lake-55070.herokuapp.com/user/signIn/", body)
-        .then(() => {
-          this.$router.push("/");
-          localStorage.setItem("isAuthenticated", true);
-          location.reload();
+        .post(`${this.baseURL}user/signin`, body)
+        .then((res) => {
+          localStorage.setItem("token", res.data.token)
+          this.$emit("fetchData");
           swal({
             text: "Login successfully",
             icon: "success"
           });
+          this.$router.push("/");
+          
         })
         .catch((err) => console.log("err", err));
     },

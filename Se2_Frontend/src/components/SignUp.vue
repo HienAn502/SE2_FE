@@ -35,8 +35,8 @@
                       </div>
                       <div class="field field-half fix-size">
                         <div class="field-input-wr">
-                          <input type="password" name="" id="" placeholder="Confirm Password" class="form-control"
-                            v-model="confirmPassword" />
+                          <input type="number" name="" id="" placeholder="Phone Number" class="form-control"
+                            v-model="phoneNumber" />
                         </div>
                       </div>
                       <div class="field field-half fix-size ">
@@ -408,31 +408,42 @@
 import axios from "axios";
 import swal from "sweetalert";
 export default {
+  emits: ['fetchData'],
+  props: {
+    products: {
+      type: Array,
+      required: true,
+    },
+    baseURL:{
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       email: "",
-      password: "",
       firstname: "",
       lastname: "",
-      confirmPassword: ""
+      password: "",
+      phoneNumber: ""
     };
   },
   methods: {
     async signup(e) {
       e.preventDefault();
-      if (this.password === this.confirmPassword) {
+      if (this.password,this.email, this.firstname, this.lastname, this.phoneNumber) {
         const user = {
           email: this.email,
-          password: this.password,
           firstname: this.firstname,
-          lastname: this.lastname
+          lastname: this.lastname,
+          password: this.password,
+          phoneNumber: this.phoneNumber,
         };
 
         await axios
-          .post("https://limitless-lake-55070.herokuapp.com/user/signup/", user)
+          .post(`${this.baseURL}user/signup`, user)
           .then(() => {
             localStorage.setItem("user_lastname", user.lastname);
-            localStorage.setItem("isAuthenticated", true);
             this.$router.push("/");
             swal({
               text: "User signup successfully",

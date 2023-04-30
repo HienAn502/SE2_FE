@@ -109,66 +109,42 @@
   </section>
   <section class="home-category-hold">
     <div class="row no-gutters mobile-fullwidth">
-      <div class="col-md-4 col-sm-4 col-6 col-xs-12">
-        <div class="clearfix text-center home-category">
-          <router-link class="img-link" to="/rings">
-            <figure>
-              <img
-                src="../assets/img/category_rings.jpg"
-                alt="Rings"
-                class="img-fluid"
-              />
+      <div class="col-md-4 col-sm-4 col-6 col-xs-12"  v-for="category in categories"
+          :key="category.id">
+        <div
+          class="clearfix text-center home-category"
+         
+        >
+          <router-link
+            class="img-link"
+            :to="{
+              name: 'ListProduct',
+              params: { categoryName: category.categoryName }
+            }"
+          >
+            <figure >
+              <img :src="category.imageUrl" alt="Rings" class="img-fluid" />
             </figure>
-            <div class="px-2 category-caption">
-              <h4>Rings</h4>
-              <p>
-                <br />
-              </p>
-            </div>
           </router-link>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4 col-6 col-xs-12">
-        <div class="clearfix text-center home-category">
-          <router-link class="img-link" to="/earings">
-            <figure>
-              <img
-                src="../assets/img/category_earings.jpg"
-                alt="Earrings"
-                class="img-fluid"
-              />
-            </figure>
-            <div class="px-2 category-caption">
-              <h4>Earrings</h4>
-              <p>
-                <br />
-              </p>
-            </div>
-          </router-link>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4 col-6 col-xs-12">
-        <div class="clearfix text-center home-category">
-          <router-link class="img-link" to="/necklace">
-            <figure>
-              <img
-                src="../assets/img/category_necklace.jpg"
-                alt="Necklace"
-                class="img-fluid"
-              />
-            </figure>
-            <div class="px-2 category-caption">
-              <h4>Necklace</h4>
-              <p>
-                <br />
-              </p>
-            </div>
-          </router-link>
-        </div>
-      </div>
+
       <div class="clearfix"></div>
     </div>
   </section>
+  <!-- Category display -->
+  <!-- <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+           <div class="text-center mb-3 heading"><h2>Featured Products</h2></div>
+         </div>
+         <div class="col-12">
+                 <p>{{ category.categoryName }}</p>
+         </div>
+      </div>
+    </div>
+   </section> -->
   <!-- Product display -->
   <section class="py-4 home-featured-panel">
     <div class="container-fluid">
@@ -177,7 +153,11 @@
           <div class="text-center mb-3 heading"><h2>Featured Products</h2></div>
         </div>
         <div class="col-12">
-          <div class="align-middle text-center d-inline" v-for="product in infor" :key="product.id">
+          <div
+            class="align-middle text-center d-inline"
+            v-for="product in shuffle(products)"
+            :key="product.id"
+          >
             <div class="d-inline-block align-top mb-4 product-inline-4">
               <div class="position-relative teaser">
                 <div class="position-relative teaser-item-div">
@@ -191,7 +171,7 @@
                       <img
                         alt="Minimalist Beaded Two Tone Wedding Ring"
                         class="img-fluid"
-                        :src="product.imageURL"
+                        :src="product.imageUrl"
                       />
                       <div class="text-center position-absolute btnquick-panel">
                         <div class="d-flex align-self-center">
@@ -208,8 +188,7 @@
                               id="mywishlistadd319924"
                               style="display: block"
                             >
-                              <span
-                                
+                              <router-link
                                 name="btn-addtowishlist"
                                 data-product-id="319924"
                                 data-logged-in="1"
@@ -217,9 +196,13 @@
                                 data-toggle="tooltip"
                                 title=""
                                 data-original-title="Add to wishlist"
+                                :to="{
+                                  name: 'ShowDetails',
+                                  params: { id: product.id }
+                                }"
                               >
-                              + Wishlist
-                              </span>
+                                + Add
+                              </router-link>
                             </div>
                             <div
                               id="mywishlistadded319924"
@@ -234,9 +217,7 @@
                                 data-toggle="tooltip"
                                 title=""
                                 data-original-title="Remove from wishlist"
-                              >
-                                
-                              </span>
+                              ></span>
                             </div>
                           </div>
                         </div>
@@ -245,14 +226,31 @@
 
                     <div class="clearfix text-center product-list-title">
                       <div class="">
-                        <div class="teaser-name" style="display: inline-block; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px ;">
-                          {{ product.name }} 
-                        </div>
+                        <router-link
+                          :to="{
+                            name: 'ShowDetails',
+                            params: { id: product.id }
+                          }"
+                        >
+                          <div
+                            class="teaser-name"
+                            style="
+                              display: inline-block;
+                              max-width: 300px;
+                              overflow: hidden;
+                              text-overflow: ellipsis;
+                              white-space: nowrap;
+                              font-size: 12px;
+                            "
+                          >
+                            {{ product.name }}
+                          </div>
+                        </router-link>
                       </div>
 
                       <div class="price-varient-block">
                         <div class="ct-pdcvariant-hold"></div>
-                        <div class="price-hold" style="font-size: 15px;">
+                        <div class="price-hold" style="font-size: 15px">
                           <span class="cut-price">
                             <span class="price-font">$</span>
                             40,000
@@ -260,7 +258,7 @@
                           &nbsp;
                           <span class="price text-danger">
                             <span class="price-font">$</span>
-                            {{ product.price }} 
+                            {{ product.price }}
                           </span>
                         </div>
                       </div>
@@ -270,10 +268,10 @@
               </div>
             </div>
             <!--
-    -->
-            
+     -->
+
             <!--
-    -->
+     -->
           </div>
         </div>
       </div>
@@ -348,7 +346,7 @@
               <span class="text-muted">April 16th, 2020</span>
               <h5 class="card-title">
                 <a href="/blog/victoria-a-wonderful-jewellery-for-women-2">
-                   A wonderful jewellery for women
+                  A wonderful jewellery for women
                 </a>
               </h5>
               <p class="card-text">
@@ -430,33 +428,40 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import {useRouter} from 'vue-router'
-const infor = ref([]);
-// Sử dụng fetch()
-const getData = async () => {
-    // ghep api
-    const response = await fetch(
-      "https://limitless-lake-55070.herokuapp.com/product/"
-    );
-    const data = await response.json(); // lam cho data o dang object
-    infor.value = data.slice(0, 8);
-};
-getData();
+<script>
+import axios from "axios";
+export default {
+  props: ["baseURL", "products", "categories"],
+  data() {
+    return {};
+  },
+  methods: {
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
 
+        // Swap
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array.slice(0, 8);
+    }
+  },
+  mounted() {}
+};
 </script>
 
 <style scoped>
-.card-title a{
+.card-title a {
   text-decoration: none;
   color: black;
   font-size: larger;
 }
-.product-list-title:hover{ 
+.product-list-title:hover {
   color: #e58c82 !important;
 }
-.cut-price:hover{
+.cut-price:hover {
   color: #e58c82 !important;
 }
 </style>

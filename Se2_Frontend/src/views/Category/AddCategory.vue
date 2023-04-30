@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Category Description</label>
-                        <textarea type="text" class="form-control" v-model="description"/>  
+                        <textarea type="text" class="form-control" v-model="description" />  
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Category Image</label>
@@ -26,7 +26,7 @@
         </div>
     </div>
 </template>
-<script>
+<script >
 import axios from "axios";
 import sweetalert from "sweetalert";
 
@@ -40,18 +40,17 @@ export default{
     },
     methods: {
         addCategory(){
-            console.log(this.categoryName,this.description);
             const newCategory = {
                 categoryName: this.categoryName,
                 description: this.description,
                 imageUrl: this.imageUrl,
             };
 
-            const baseURL = "https://limitless-lake-55070.herokuapp.com"
+            const baseURL = "http://localhost:8080/"
 
             axios({
                 method: 'post',
-                url:`${baseURL}//category//create`,
+                url:`${baseURL}category/create`,
                 data: JSON.stringify(newCategory),
                 headers:{
                     'Content-Type': 'application/json'

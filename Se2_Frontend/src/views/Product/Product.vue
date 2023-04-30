@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row all-cards">
-            <div v-for="product of products" :key = "product.id" class="col-xl-4 col-12 pt-3 col-md-6 d-flex">
+            <div v-for="product in products" :key = "product.id" class="col-xl-4 col-12 pt-3 col-md-6 d-flex">
                 <ProductBox :product="product"></ProductBox>
             </div>
         </div>
@@ -21,6 +21,7 @@ import ProductBox from '../../components/Product/ProductBox.vue';
 
 export default{
     name: "Product",
+    props: ["baseURL"],
     components: { ProductBox },
     data(){
         return{
@@ -30,8 +31,8 @@ export default{
     methods: {
         async getProducts(){
             await axios
-            .get("https://limitless-lake-55070.herokuapp.com/product/")
-            .then(res => this.products=res.data)
+            .get(`${this.baseURL}product`)
+            .then(res => this.products=res.data,)
             .catch(err => console.log(err))
         }      
     },

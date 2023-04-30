@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row all-cards">
-            <div v-for="category of categories" :key = "category.id" class="col-xl-4 col-12 pt-3 col-md-6 d-flex">
+            <div v-for="category in categories" :key = "category.id" class="col-xl-4 col-12 pt-3 col-md-6 d-flex">
                 <CategoryBox :category="category"></CategoryBox>
             </div>
         </div>
@@ -30,7 +30,7 @@ export default{
     methods: {
         async getCategories(){
             await axios
-            .get("https://limitless-lake-55070.herokuapp.com/category/")
+            .get("http://localhost:8080/category/list")
             .then(res => this.categories=res.data)
             .catch(err => console.log(err))
         }      

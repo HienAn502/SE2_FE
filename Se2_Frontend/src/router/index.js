@@ -3,10 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Blog from "../views/Blog.vue"
 import Contact from "../views/Contact.vue"
 import Home from "../views/Home.vue"
-import Bracelets from "../views/Bracelets.vue"
-import Rings from "../views/Rings.vue"
-import Necklace from "../views/Necklace.vue"
-import Earings from "../views/Earings.vue"
 import About from "../views/About.vue"
 import SignUp from "../components/SignUp.vue"
 import Login from "../components/Login.vue"
@@ -19,9 +15,13 @@ import EditProduct from "../views/Product/EditProduct.vue"
 import AddProduct from "../views/Product/AddProduct.vue"
 import Voucher from "../views/Voucher/Voucher.vue"
 import AddVoucher from "../views/Voucher/AddVoucher.vue"
+import ShowDetails from "../views/product/ShowDetails.vue"
+import Cart from "../views/Cart.vue"
+import ListProduct from "../views/category/ListProduct.vue"
 
 const routes = [{
         path: '/',
+        name: 'Home',
         component: Home
     }, {
         path: '/blog',
@@ -30,20 +30,6 @@ const routes = [{
     {
         path: '/contact',
         component: Contact
-    },
-    {
-        path: '/rings',
-        component: Rings
-    }, {
-        path: '/earings',
-        component: Earings
-    }, {
-        path: '/bracelets',
-        component: Bracelets
-    },
-    {
-        path: '/necklace',
-        component: Necklace
     },
     {
         path: '/about',
@@ -57,25 +43,28 @@ const routes = [{
         path: '/login',
         component: Login
     },
-    { 
+    {
         path: '/admin/category/add',
         component: AddCategory
     },
     {
-        path: '/admin/category/edit',
+        path: '/admin/category/edit/:id',
+        name: 'EditCategory',
         component: EditCategory
     },
     {
         path: '/admin/category',
+        name: "Category",
         component: Category
     },
-        //admin home page
+    //admin home page
     {
-        path:'/admin',
+        path: '/admin',
         component: Admin
     },
     {
-        path:'/admin/product',
+        path: '/admin/product',
+        name: 'Product',
         component: Product
     },
     {
@@ -83,18 +72,33 @@ const routes = [{
         component: AddProduct
     },
     {
-        path: '/admin/product/edit',
+        path: '/admin/product/edit/:id',
+        name: 'EditProduct',
         component: EditProduct
     },
     {
-        path:'/admin/voucher',
+        path: '/admin/voucher',
         component: Voucher
     },
     {
         path: '/admin/voucher/add',
         component: AddVoucher
-    }
-
+    },
+    {
+        path: '/product/show/:id',
+        name: 'ShowDetails',
+        component: ShowDetails
+    },
+    {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart
+    },
+    {
+        path: '/category/show/:categoryName',
+        name: 'ListProduct',
+        component: ListProduct
+    },
 ]
 const router = createRouter({
     history: createWebHistory(),

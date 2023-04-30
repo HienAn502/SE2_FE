@@ -7,7 +7,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ category.categoryName }}</h5>
             <p class="card-text">{{ category.description }}</p>
-            <router-link to="/admin/category/edit" :to="{params: {id: category.id} }">
+            <router-link :to=" {name: 'EditCategory',params: {id: category.id} }">
                 <button class="btn btn-primary css-button txt">Edit</button>
             </router-link>
             <button class="btn btn-primary css-button1 txt">Delete</button>
