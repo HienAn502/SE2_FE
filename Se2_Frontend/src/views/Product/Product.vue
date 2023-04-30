@@ -38,7 +38,7 @@
                                 <button class="btn btn-primary plus-btn">
                                     <i class="fa-solid fa-plus fa-2xl" style="
                       color: #ffffff;
-                      transform: translateX(-2px) translateY(1px);
+                      transform: translateX(0px) translateY(1px);
                     "></i>
                                 </button>
                             </router-link>
