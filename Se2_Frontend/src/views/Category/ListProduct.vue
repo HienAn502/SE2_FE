@@ -26,8 +26,8 @@
                 itemscope=""
                 itemtype="http://schema.org/ListItem"
               >
-                <a itemprop="item" href="/categories/rings">
-                  <span itemprop="name">Rings</span>
+                <a itemprop="item" href="/categories/show/{{ categoryName }}">
+                  <span itemprop="name">{{ categoryName }}</span>
                   <meta itemprop="position" content="2" />
                 </a>
               </li>

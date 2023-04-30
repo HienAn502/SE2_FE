@@ -205,11 +205,15 @@
                 <div class="shoppingcart">
                   <div id="div-drop-cart" class="position-relative">
                     <div class="position-relative cd-cart-trigger">
-                      <router-link to="/cart" class="d-block px-1 cart-icon align-items-center"  title="Shopping Bag">
+                      <router-link
+                        to="/cart"
+                        class="d-block px-1 cart-icon align-items-center"
+                        title="Shopping Bag"
+                      >
                         <span
                           class="position-absolute rounded-circle badge badge-primary"
                         >
-                        {{ cartCount }}
+                          {{ cartCount }}
                         </span>
                         <svg
                           class="mx-auto d-block"
@@ -287,8 +291,8 @@
                   <!-- <a href="/" class="menu-link">Home</a> -->
                   <router-link to="/" class="menu-link">Home</router-link>
                 </li>
-                <li class="menu-item" >
-                  <div class="dropdown show" >
+                <li class="menu-item">
+                  <div class="dropdown show">
                     <a
                       class="dropdown-toggle menu-link"
                       href="#"
@@ -296,7 +300,6 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
-                      
                     >
                       Categories
                     </a>
@@ -304,18 +307,19 @@
                     <div
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuLink"
-                     
                     >
-                      <router-link 
-                      v-for="category in categories" 
-                      :key="category.id"
-                      :to="{name : 'ListProduct', params:{categoryName : category.categoryName} }" 
-                      class="dropdown-item" 
-                      v-on:click="forcePageReload"
+                      <router-link
+                        v-for="category in categories"
+                        :key="category.id"
+                        :to="{
+                          name: 'ListProduct',
+                          params: { categoryName: category.categoryName },
+                        }"
+                        class="dropdown-item"
+                        @click="forcePageReload(category.categoryName)"
                       >
                         <p>{{ category.categoryName }}</p>
                       </router-link>
-                     
                     </div>
                   </div>
                 </li>
@@ -339,17 +343,17 @@
 </template>
 <script>
 export default {
-  props: ["cartCount","categories","products"],
+  props: ["cartCount", "categories", "products"],
   data() {
     return {
-      token:null,
-      lastname: ""
+      token: null,
+      lastname: "",
     };
   },
   methods: {
     logout() {
       // Remove the  and 'username' items from Local Storage
-      localStorage.removeItem("token")
+      localStorage.removeItem("token");
       this.token = null;
       swal({
         text: "Logged you out. Visit again",
@@ -358,17 +362,15 @@ export default {
       this.$emit("resetCartCount");
       // Redirect to the login page or any other page
       this.$router.push("/");
-      
     },
-    forcePageReload() {
-    this.$emit("fetchData")
-    
-  }
+    forcePageReload(categoryName) {
+      location.replace("http://127.0.0.1:5173/category/show/"+categoryName);
+    },
   },
-  mounted(){
+  mounted() {
     this.token = localStorage.getItem("token");
-    this.lastname = localStorage.getItem("user_lastname")
-  }
+    this.lastname = localStorage.getItem("user_lastname");
+  },
 };
 </script>
 <style scoped>
