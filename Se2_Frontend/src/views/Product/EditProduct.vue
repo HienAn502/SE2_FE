@@ -64,7 +64,7 @@ import swal from 'sweetalert'
                     this.product)
                     .then(() => {
                         this.$emit("fetchData");
-                        this.$router.push({name: 'Product'})
+                        this.$router.push({name: "Product"})
                         swal({
                             text: "product has been updated successfully",
                             icon: "success"

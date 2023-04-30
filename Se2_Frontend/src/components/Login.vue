@@ -36,6 +36,8 @@ export default {
           swal({
             text: "Login successfully",
             icon: "success"
+          }).then(() => {
+            location.replace('http://127.0.0.1:5173/')
           });
           this.$router.push("/");
           

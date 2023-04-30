@@ -56,7 +56,7 @@ export default {
       )
       .then(() => {
         this.$emit("fetchData")
-        this.$route.push({name: 'Category'})
+        this.$router.push({name: 'Category'})
         swal({
           text: "Category Updated Successfully!",
           icon: "success",

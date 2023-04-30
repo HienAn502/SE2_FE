@@ -60,6 +60,7 @@ const routes = [{
     //admin home page
     {
         path: '/admin',
+        name: 'Admin',
         component: Admin
     },
     {

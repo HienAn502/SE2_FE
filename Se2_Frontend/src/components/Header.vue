@@ -172,9 +172,11 @@
                         class="dropdown-menu"
                         aria-labelledby="dropdownMenuButton"
                       >
+                      <router-link class="dropdown-item" :to="{name: 'Admin'}">Admin</router-link>
                         <a class="dropdown-item" @click.prevent="logout">
                           Logout
                         </a>
+                        
                       </div>
                     </div>
                   </div>
@@ -311,7 +313,7 @@
                       :key="category.id"
                       :to="{name : 'ListProduct', params:{categoryName : category.categoryName} }" 
                       class="dropdown-item" 
-                      v-on:click="forcePageReload"
+                      @click="forcePageReload(category.categoryName)"
                       >
                         <p>{{ category.categoryName }}</p>
                       </router-link>
@@ -360,10 +362,9 @@ export default {
       this.$router.push("/");
       
     },
-    forcePageReload() {
-    this.$emit("fetchData")
-    
-  }
+    forcePageReload(categoryName) {
+      location.replace("http://127.0.0.1:5173/category/show/"+categoryName);
+    },
   },
   mounted(){
     this.token = localStorage.getItem("token");
