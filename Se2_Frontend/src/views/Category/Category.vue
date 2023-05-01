@@ -31,6 +31,7 @@ import CategoryBox from '../../components/Category/CategoryBox.vue';
 import SlideBarAdmin from "../SlideBarAdmin.vue"
 export default{
     name: "Category",
+  
     components: { CategoryBox, SlideBarAdmin },
     data(){
         return{

@@ -11,7 +11,7 @@
             <router-link :to="{name: 'EditProduct',params: {id: product.id} }">
                 <button class="btn btn-primary css-button">Edit</button>
             </router-link>
-            <button class="btn btn-primary css-button1 txt">Delete</button>
+            <button class="btn btn-primary css-button1 txt" >Delete</button>
         </div>
     </div>
 </template>
@@ -20,7 +20,9 @@
 export default {
     name:"ProductBox",
     props:["product"],
-    methods:{},
+    methods:{
+       
+    },
 }
 </script>
 <style scoped>

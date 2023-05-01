@@ -3,7 +3,7 @@
     <div class="container">
       <div class="py-3 sub-hold">
         <div class="mb-4 layout-column clearfix">
-        <SlideBarAdmin></SlideBarAdmin>
+          <SlideBarAdmin></SlideBarAdmin>
           <div class="right-column category-items">
             <div class="row">
               <div class="col-12 text-left ms-2">
@@ -45,55 +45,7 @@
                             />
                             <div
                               class="text-center position-absolute btnquick-panel"
-                            >
-                              <!-- <div class="d-flex align-self-center">
-                              <span
-                                class="w-75 btn btn-primary btn-sm btnquick"
-                                data-toggle="modal"
-                                data-target="#quickProduct"
-                                data-product-url="minimalist-beaded-two-tone-wedding-ring-1"
-                              >
-                                <span>+ Quick View</span>
-                              </span>
-                              <div class="w-75 d-block wishlist-button">
-                                <div
-                                  id="mywishlistadd319924"
-                                  style="display: block"
-                                >
-                                  <router-link
-                                    name="btn-addtowishlist"
-                                    data-product-id="319924"
-                                    data-logged-in="1"
-                                    class="d-block btn btn-primary btn-sm addtowishlistfromlist"
-                                    data-toggle="tooltip"
-                                    title=""
-                                    data-original-title="Add to wishlist"
-                                    :to="{
-                                      name: 'ShowDetails',
-                                      params: { id: product.id },
-                                    }"
-                                  >
-                                    + Add
-                                  </router-link>
-                                </div>
-                                <div
-                                  id="mywishlistadded319924"
-                                  style="display: none"
-                                >
-                                  <span
-                                    href="javascript:void(0)"
-                                    name="btn-addtowishlist"
-                                    data-product-id="319924"
-                                    data-logged-in="1"
-                                    class="d-block btn btn-primary btn-sm removerromwishlist"
-                                    data-toggle="tooltip"
-                                    title=""
-                                    data-original-title="Remove from wishlist"
-                                  ></span>
-                                </div>
-                              </div>
-                            </div> -->
-                            </div>
+                            ></div>
                           </figure>
 
                           <div class="clearfix text-center product-list-title">
@@ -125,7 +77,7 @@
                               <div class="price-hold" style="font-size: 15px">
                                 <span class="cut-price">
                                   <span class="price-font">$</span>
-                                  40,000
+                                  {{ product.discount_price  }}
                                 </span>
                                 &nbsp;
                                 <span class="price text-danger">
@@ -155,10 +107,11 @@
                                   Edit
                                 </button>
                               </router-link>
-
+                              
                               <button
                                 class="btn btn-outline-danger"
-                                style="pointer-events: none; font-size: 0.8rem"
+                                style="font-size: 0.8rem"
+                                @click="deleteProduct(product.id)"
                               >
                                 <span style="color: #dc3646">
                                   <i
@@ -168,24 +121,15 @@
                                   Delete
                                 </span>
                               </button>
+                             
                             </div>
                           </div>
                         </a>
                       </div>
                     </div>
                   </div>
-                  <!--
-     -->
-
-                  <!--
-     -->
                 </div>
               </div>
-              <!-- <div class="row all-cards">
-            <div v-for="product in products" :key = "product.id" class="col-xl-4 col-12 pt-3 col-md-6 d-flex">
-                <ProductBox :product="product"></ProductBox>
-            </div>
-        </div> -->
             </div>
           </div>
         </div>
@@ -196,14 +140,14 @@
 <script>
 import axios from "axios";
 import ProductBox from "../../components/Product/ProductBox.vue";
-import SlideBarAdmin from "../SlideBarAdmin.vue"
+import SlideBarAdmin from "../SlideBarAdmin.vue";
 export default {
   name: "Product",
   props: ["baseURL"],
-  components: { ProductBox, SlideBarAdmin},
+  components: { ProductBox, SlideBarAdmin },
   data() {
     return {
-      products: []
+      products: [],
     };
   },
   methods: {
@@ -212,10 +156,32 @@ export default {
         .get(`${this.baseURL}product`)
         .then((res) => (this.products = res.data))
         .catch((err) => console.log(err));
+    },
+    async deleteProduct(pid){
+      const confirmDelete = await swal({
+           title: "Are you sure?",
+           text: "Once deleted, you will not be able to recover this product!",
+           icon: "warning",
+           buttons: true,
+           dangerMode: true,
+    });
+    if (confirmDelete) {
+      await axios.delete(`${this.baseURL}product/delete/${pid}`).then(() => {
+                        this.$emit("fetchData");
+                        swal({
+                            text: "product has been deleted successfully",
+                            icon: "success"    
+                        })
+                        this.$router.push({name: "Product"})
+                        this.$router.go(0)
+                    }).catch(err => console.log('err', err));
+                  }
+  
     }
   },
   mounted() {
     this.getProducts();
+ 
   }
 };
 </script>
@@ -281,6 +247,3 @@ export default {
   margin-top: 70px;
 }
 </style>
-
-
-
