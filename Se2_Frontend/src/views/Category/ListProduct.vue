@@ -70,24 +70,25 @@
         <div class="position-relative d-inline-block select-hold align-top">
           <div class="input select">
             <select
+              v-model="sortType"
               name="data[sort_by]"
               class="border position-relative"
               id="sort_by"
             >
               <option
-                value="sort_by=sort_order&amp;order=ASC"
+                value="default"
                 selected="selected"
               >
                 Sort By
               </option>
-              <option value="sort_by=price&amp;order=ASC">
+              <option value="price_low_high">
                 Price (Low &gt; High)
               </option>
-              <option value="sort_by=price&amp;order=DESC">New Arrival</option>
-              <option value="sort_by=product&amp;order=ASC">
+              <option value="price_high_low">New Arrival</option>
+              <option value="name_a_z">
                 Name (A - Z)
               </option>
-              <option value="sort_by=product&amp;order=DESC">
+              <option value="name_z_a">
                 Name (Z - A)
               </option>
             </select>
@@ -100,7 +101,7 @@
       <div class="col-12">
         <div
           class="align-middle text-center d-inline"
-          v-for="product in ListProduct"
+          v-for="product in sortedItems"
           :key="product.id"
         >
           <div class="d-inline-block align-top mb-4 product-inline-4">
@@ -221,7 +222,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      ListProduct: ""
+      ListProduct: "",
+      sortType: "default"
     };
   },
   props: ["categories", "baseURL"],
@@ -233,19 +235,58 @@ export default {
           this.ListProduct = res.data;
         })
         .catch((err) => console.log("err", err));
-    }
+    },
+
+    mix(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+
+        // Swap
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array.slice(0, 8);
+    },
   },
+
+  computed: {
+    sortedItems() {
+      // Lấy các sản phẩm
+      let items = this.ListProduct;
+
+      // Kiểm tra loại sắp xếp được chọn
+      if (this.sortType === "price_low_high") {
+      // Sắp xếp theo giá low to high
+      return items.sort((a, b) => {
+      return a.price - b.price;
+      });
+      // Sắp xếp theo giá high to low
+      }if(this.sortType === "price_high_low"){
+        return items.sort((a,b) =>{
+        return b.price - a.price;
+        });
+      // Sắp xếp theo tên A - Z
+      }if(this.sortType === "name_a_z"){
+        return items.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+        });
+      }if (this.sortType === "name_z_a"){
+      // Sắp xếp theo tên Z - A
+      return items.sort((a, b) => {
+      return b.name.localeCompare(a.name);
+      });
+      } else{
+        return this.mix(items);
+      }
+      },
+      },	
+
   mounted() {
     this.categoryName = this.$route.params.categoryName;
-    // this.category = this.categories.find(category => category.id == this.id)
-    // if (this.category.products.length == 0) {
-    //     this.msg = "no products found"
-    // } else if (this.category.products.length == 1) {
-    //     this.msg = "Only 1 product found"
-    // } else {
-    //     this.msg = this.category.products.length + " products found"
-    // }
     this.getProductList();
   }
 };
 </script>
+
+

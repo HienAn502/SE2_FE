@@ -253,7 +253,7 @@
                         <div class="price-hold" style="font-size: 15px">
                           <span class="cut-price">
                             <span class="price-font">$</span>
-                            40,000
+                            {{ product.discount_price }}
                           </span>
                           &nbsp;
                           <span class="price text-danger">

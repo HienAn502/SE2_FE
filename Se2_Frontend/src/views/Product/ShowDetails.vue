@@ -39,6 +39,7 @@
                         <li>molestias ipsum ab, ipsa consectetur laboriosam soluta et</li>
                         <li>ut doloremque dolore corrupti, architecto iusto beatae.</li>
                     </ul>
+                
                 </div>
                
             </div>
@@ -101,4 +102,8 @@ export default {
 <style scoped>
 #add-to-cart-button {
     background-color: #febd69;
-}</style>
+}
+
+
+
+</style>

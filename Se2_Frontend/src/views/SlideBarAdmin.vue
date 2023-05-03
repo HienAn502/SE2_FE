@@ -29,7 +29,7 @@
                 ></i>
                 Products
               </router-link>
-              <router-link to="admin/voucher" class="rout-link">
+              <router-link to="/admin/voucher" class="rout-link">
                 <i class="fa-solid fa-gift ic" style="color: black"></i>
                 Vouchers
               </router-link>

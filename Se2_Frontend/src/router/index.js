@@ -18,7 +18,7 @@ import AddVoucher from "../views/Voucher/AddVoucher.vue"
 import ShowDetails from "../views/product/ShowDetails.vue"
 import Cart from "../views/Cart.vue"
 import ListProduct from "../views/category/ListProduct.vue"
-
+import EditVoucher from "../views/Voucher/EditVoucher.vue"
 const routes = [{
         path: '/',
         name: 'Home',
@@ -79,11 +79,18 @@ const routes = [{
     },
     {
         path: '/admin/voucher',
+        name: "Voucher",
         component: Voucher
     },
     {
         path: '/admin/voucher/add',
         component: AddVoucher
+    },
+
+    {
+        path: '/admin/voucher/edit/:id',
+        name: 'EditVoucher',
+        component: EditVoucher
     },
     {
         path: '/product/show/:id',

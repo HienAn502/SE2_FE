@@ -55,13 +55,29 @@
         </a>
       </div>
       <div class="col-2"></div>
-      <div class="col-12"><hr /></div>
+      <div class="col-12"><hr />
+      </div>
+      
     </div>
 
     <!-- display the price -->
     <div class="total-cost pt-2 text-right mb-4">
-      <h5>Total : ${{ totalCost.toFixed(2) }}</h5>
-      <button type="button" class="btn btn-primary confirm" data-v-7da15e77=""> Confirm Order </button>
+      <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{ selectedVoucher ? selectedVoucher.name : 'Select Voucher' }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a v-for="voucher in vouchers" 
+         :key="voucher.id"
+         class="dropdown-item" 
+         @click="selectedVoucher = voucher"
+      >
+        {{ voucher.name }} ({{ voucher.rate * 100 }}%)
+      </a>
+    </div>
+  </div>
+                  <h5>Total : ${{ discountedTotalCost.toFixed(2) }}</h5>
+      <button type="button" class="btn btn-primary confirm" data-v-7da15e77="" @click="confirmOrder"> Confirm Order </button>
     </div>
   </div>
 </template>
@@ -73,9 +89,20 @@ export default {
       cartItems: [],
       token: null,
       totalCost: 0,
+      vouchers: "",
+      selectedVoucher: null,
     };
   },
   props: ["baseURL"],
+  computed: {
+    discountedTotalCost() {
+      if (!this.selectedVoucher) {
+        return this.totalCost;
+      }
+      const discount = this.totalCost * this.selectedVoucher.rate;
+      return this.totalCost - discount;
+    }
+  },
   methods: {
     // fetch All items in cart
     listCartItems() {
@@ -100,12 +127,33 @@ export default {
         })
         .catch((err) => console.log("err", err));
     },
+    async getVoucher(){
+        await axios.get(`${this.baseURL}voucher/`).then((res) => {
+          console.log(res.data)
+          this.vouchers = res.data
+        }).catch((err) => console.log("err", err));
+    },
+    confirmOrder() {
+      if (!this.selectedVoucher) {
+        alert('Please select a voucher before confirming your order.');
+        return;
+      }
+      // TODO: handle order confirmation
+    }
   },
   mounted() {
     this.token = localStorage.getItem("token");
     this.listCartItems();
+    this.getVoucher()
   },
-};
+  }
+ 
 </script>
 <style scoped>
+.menu-link{
+  color: #1b1b1a;
+  font-size: large;
+  border-radius: 5px;
+  
+}
 </style>

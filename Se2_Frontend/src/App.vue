@@ -10,6 +10,7 @@
     :baseURL="baseURL"
     :categories="categories"
     :products="products"
+    :vouchers="vouchers"
     @fetchData="fetchData"
     ></router-view>
   <Footer></Footer>
@@ -27,6 +28,7 @@ export default {
       baseURL: "http://localhost:8080/",
       products: null,
       categories: null,
+      vouchers: null,
       cartCount: 0
     }
   },
@@ -47,6 +49,15 @@ export default {
           this.products = res.data;
         })
         .catch((err) => console.log("err", err));
+        // api get the vouchers
+      await axios
+        .get(this.baseURL + "voucher/")
+        .then((res) => {
+          this.vouchers = res.data;
+        })
+        .catch((err) => console.log("err", err));
+    
+  
       // fetch cart item if token is present i.e logged in
       if (this.token) {
         axios

@@ -11,27 +11,68 @@
                 <form>
                     <div class="form-group">
                         <label for="" class="mg-text">Voucher Name</label>
-                        <input type="text" class="form-control" />    
+                        <input type="text" class="form-control" v-model="name"/>    
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="" class="mg-text">Voucher Created Date</label>
-                        <input type="datetime" class="form-control" />  
-                    </div>
+                        <input type="datetime" class="form-control" v-model="createdDate"/>  
+                    </div> -->
                     <div class="form-group">
                         <label for="" class="mg-text">Voucher Expired Date</label>
-                        <input type="datetime" class="form-control" />    
+                        <input type="date" class="form-control" v-model="expiredDate"/>    
                     </div>
                     <div class="form-group">
                         <label for="" class="mg-text">Voucher Rate</label>
-                        <input type="number" class="form-control" />    
+                        <input type="number" class="form-control" v-model="rate"/>    
                     </div>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" @click = "addVoucher">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
+import swal from 'sweetalert'
+
+export default{
+    props : ["baseURL"],
+    data(){
+        return{
+            voucher:{
+                id: "",
+                name:"",
+                createdDate: "",
+                expiredDate: "",
+                rate: ""
+            },
+        }
+    },
+    methods: {
+       async addVoucher(){
+            const newVoucher = {
+                name: this.name,
+                expiredDate: this.expiredDate,
+                rate: this.rate
+            };
+
+          await  axios.post(`${this.baseURL}voucher/create`, newVoucher)
+            .then((res) => {
+                console.log(res.message)
+                swal({
+                    text: "Voucher added successfully",
+                    icon: "success",
+                    closeOnClickOutside: false,
+                })
+                this.$router.push('/admin/voucher');
+            }).catch((err) => {
+                console.log("err", err);
+            })
+
+        }   
+    }
+
+}
 </script>
 <style scoped>
 .head-ln{

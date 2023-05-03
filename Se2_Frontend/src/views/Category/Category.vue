@@ -6,7 +6,7 @@
             <SlideBarAdmin></SlideBarAdmin>
             <div class="right-column category-items">
                 <div class="row">
-           <div class="col-12 text-center">
+           <div class="col-12 mt-4 mb-4">
                <h3 class="">Ours Categories</h3>
                <router-link to="/admin/category/add">
                    <button class="btn btn-primary" style="float:right">Add new category</button>
@@ -61,4 +61,5 @@ export default{
     margin-top:15px;
     margin-bottom:15px;
 }
+
 </style>

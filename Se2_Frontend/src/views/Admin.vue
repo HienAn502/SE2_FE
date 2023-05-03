@@ -43,7 +43,7 @@
                           <span class="price-hold">
                             <span class="cut-price">
                               <span class="price-font">₹</span>
-                              40,000
+                              {{ product.discount_price }}
                             </span>
                             &nbsp;
                             <span class="price text-danger">
@@ -110,14 +110,34 @@
           </div>
           <div class="container-fluid">
             <div class="txt-head txt2" style="font-weight: bold">Vouchers</div>
+            <section class="home-category-hold">
+              <div class="row no-gutters mobile-fullwidth">
+                <div
+                  class="col-md-4 col-sm-4 col-6 col-xs-12"
+                  v-for="voucher in vouchers"
+                  :key="voucher.id"
+                >
+                  <div class="clearfix text-center home-category">
+                    <a
+                      class="img-link"
+                    >
+                      {{ voucher.name }}
+                  </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+            </section>
             <div class="view-all2">
-              <router-link to="/admin/voucher">
+              <router-link to="/voucher">
                 <button class="btn btn-primary" style="float: right">
                   View All
                 </button>
               </router-link>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -125,12 +145,14 @@
 </template>
 <script>
 import SlideBarAdmin from "./SlideBarAdmin.vue"
+import axios from "axios";
 export default {
   components:{SlideBarAdmin},
   props: ["baseURL", "products", "categories"],
   data() {
     return {
-        token: ""
+        token: "",
+        vouchers: ""
     };
   },
   methods: {
@@ -144,6 +166,15 @@ export default {
         array[j] = temp;
       }
       return array.slice(0, 8);
+    },
+    async getVoucher() {
+      await axios
+        .get(`${this.baseURL}voucher/`)
+        .then((res) => {
+          console.log(res.data);
+          this.vouchers = res.data;
+        })
+        .catch((err) => console.log("err", err));
     }
   },
   mounted() {
@@ -157,6 +188,7 @@ export default {
         });
         return;
       }
+      this.getVoucher()
   }
 };
 </script>
