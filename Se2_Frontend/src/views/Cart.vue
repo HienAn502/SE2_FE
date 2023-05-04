@@ -134,11 +134,8 @@ export default {
         }).catch((err) => console.log("err", err));
     },
     confirmOrder() {
-      if (!this.selectedVoucher) {
-        alert('Please select a voucher before confirming your order.');
-        return;
-      }
       // TODO: handle order confirmation
+      this.$router.push({ name: 'Checkout' });
     }
   },
   mounted() {

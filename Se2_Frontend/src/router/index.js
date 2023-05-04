@@ -19,6 +19,12 @@ import ShowDetails from "../views/product/ShowDetails.vue"
 import Cart from "../views/Cart.vue"
 import ListProduct from "../views/category/ListProduct.vue"
 import EditVoucher from "../views/Voucher/EditVoucher.vue"
+// import Success from '../views/payment/Success';
+// import Failed from '../views/payment/Failed';
+// import Checkout from '../views/Checkout/Checkout';
+import Success from "../views/payment/Success.vue"
+import Failed from "../views/payment/Failed.vue"
+import Checkout from '../views/checkout/Checkout.vue'
 const routes = [{
         path: '/',
         name: 'Home',
@@ -35,6 +41,7 @@ const routes = [{
         path: '/about',
         component: About
     },
+    // sign up and signin
     {
         path: '/signup',
         component: SignUp
@@ -43,6 +50,7 @@ const routes = [{
         path: '/login',
         component: Login
     },
+    // admin category
     {
         path: '/admin/category/add',
         component: AddCategory
@@ -56,6 +64,10 @@ const routes = [{
         path: '/admin/category',
         name: "Category",
         component: Category
+    }, {
+        path: '/category/show/:categoryName',
+        name: 'ListProduct',
+        component: ListProduct
     },
     //admin home page
     {
@@ -63,6 +75,7 @@ const routes = [{
         name: 'Admin',
         component: Admin
     },
+    // admin product
     {
         path: '/admin/product',
         name: 'Product',
@@ -77,6 +90,7 @@ const routes = [{
         name: 'EditProduct',
         component: EditProduct
     },
+    // admin voucher
     {
         path: '/admin/voucher',
         name: "Voucher",
@@ -92,20 +106,43 @@ const routes = [{
         name: 'EditVoucher',
         component: EditVoucher
     },
+    // show details of product
     {
         path: '/product/show/:id',
         name: 'ShowDetails',
         component: ShowDetails
     },
+    // show product in category
+    {
+        path: '/category/show/:categoryName',
+        name: 'ListProduct',
+        component: ListProduct
+    },
+    // cart
     {
         path: '/cart',
         name: 'Cart',
         component: Cart
     },
+    // sucess and fail pages
     {
-        path: '/category/show/:categoryName',
-        name: 'ListProduct',
-        component: ListProduct
+        path: '/payment/success',
+        name: 'PaymentSuccess',
+        component: Success,
+    },
+
+    {
+        path: '/payment/failed',
+        name: 'PaymentFail',
+        component: Failed,
+    },
+
+    // checkout
+
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout,
     },
 ]
 const router = createRouter({
