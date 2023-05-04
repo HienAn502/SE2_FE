@@ -62,4 +62,7 @@ import swal from 'sweetalert'
     }
 </script>
 <style scoped>
+form {
+    margin: 30px 0px;
+}
 </style>

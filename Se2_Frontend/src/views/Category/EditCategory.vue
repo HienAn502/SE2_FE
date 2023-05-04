@@ -76,6 +76,10 @@ export default {
 }
 </script>
 <style scoped>
+
+form {
+    margin: 30px 0px;
+}
 .head-ln{
     margin-top: 2rem;
     margin-bottom: 15px;

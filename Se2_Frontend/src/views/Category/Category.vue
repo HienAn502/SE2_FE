@@ -9,8 +9,16 @@
            <div class="col-12 mt-4 mb-4">
                <h3 class="">Ours Categories</h3>
                <router-link to="/admin/category/add">
-                   <button class="btn btn-primary" style="float:right">Add new category</button>
-               </router-link>
+                  <button class="btn btn-primary plus-btn">
+                    <i
+                      class="fa-solid fa-plus fa-2xl"
+                      style="
+                        color: #ffffff;
+                        transform: translateX(-1px) translateY(1px);
+                      "
+                    ></i>
+                  </button>
+                </router-link>
            </div>
        </div>
        <div class="row all-cards">
@@ -54,12 +62,18 @@ export default{
 </script>
 <style scoped>
 .all-cards{
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 40px;
 }
 .pt-3{
-    margin-top:15px;
+    margin-top:0px;
     margin-bottom:15px;
+}
+.plus-btn {
+  float: right;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
 </style>

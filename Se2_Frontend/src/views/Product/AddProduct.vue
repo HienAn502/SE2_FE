@@ -10,7 +10,7 @@
             <div class="text-center form-second">
                 <form>
                     <div class="form-group">
-                        <label for="" class="mg-text">Category</label>
+                        <label for="" class="mg-text">Product</label>
                         <select  class="form-control" v-model="categoryId">
                             <option v-for="category in categories" :key ="category.id"
                                     :value="category.id">{{category.categoryName}}</option>
