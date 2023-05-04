@@ -18,7 +18,8 @@ export default {
     return {
       showPassword: false,
       email: null,
-      password: null
+      password: null,
+      inputTypeIcon: "password"
     };
   },
   methods: {
@@ -42,19 +43,23 @@ export default {
           this.$router.push("/");
           
         })
-        .catch((err) => console.log("err", err));
+        .catch((err) => {
+          const errorMessage = (err.response.data)
+          swal({
+            text: errorMessage,
+            icon: "error"
+          })
+        }
+        )
+       
+        ;
+        
     },
-    computed: {
-      buttonLabel() {
-        return this.showPassword ? "Hide" : "Show";
+     toggleShow() {
+        this.inputTypeIcon = this.inputTypeIcon === "password" ? "text" : "password"
       }
-    },
-    methods: {
-      toggleShow() {
-        this.showPassword = !this.showPassword;
-      }
-    }
-  }
+      
+  },
 };
 </script>
 
@@ -94,7 +99,7 @@ export default {
                       class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-item password"
                     >
                       <input
-                        v-if="showPassword"
+                        :type="inputTypeIcon"
                         v-model="password"
                         type="password"
                         name="password"
@@ -104,28 +109,15 @@ export default {
                         title="Please enter valid password"
                         required="required"
                       />
-                      <input
-                        v-else
-                        v-model="password"
-                        type="password"
-                        name="password"
-                        class="form-control"
-                        placeholder="Password"
-                        tabindex="2"
-                        title="Please enter valid password"
-                        required="required"
-                      />
-
-                      <span>
-                        <i
-                          @click="toggleShow"
-                          class="fas"
-                          :class="{
-                            'fa-eye-slash': showPassword,
-                            'fa-eye': !showPassword
-                          }"
-                        ></i>
-                      </span>
+                    
+                      <span v-if="inputTypeIcon == 'password'"  @click.prevent="toggleShow">
+                      <i class="fas fa-eye mr-2"></i>
+                    </span>
+                    <span v-else  @click.prevent="toggleShow">
+                      <i class="fas fa-eye-slash"></i>
+                    </span>
+                    
+                 
                     </div>
                   </div>
 

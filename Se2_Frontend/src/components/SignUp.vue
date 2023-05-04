@@ -12,7 +12,7 @@
                     <div class="field-form-wr clearfix">
                       <div class="field field-half fix-size">
                         <div class="field-input-wr">
-                          <input type="email" name="" id="" placeholder="Email" class="form-control" v-model="email" />
+                          <input type="email" placeholder="Email" class="form-control" v-model="email" />
                         </div>
                       </div>
                       <div class="field field-half fix-size">
@@ -360,7 +360,7 @@
                     </div>
                     <div class="row two-checkbox">
                       <div class="input checkbox required">
-                        <input id="CustomerAgree" type="checkbox" class="tick-checkbox" required="required" />
+                        <input id="CustomerAgree" type="checkbox" class="tick-checkbox" required v-model="isChecked"/>
                         <label>
                           <span>
                             I have read and agree to the
@@ -369,13 +369,13 @@
                         </label>
                       </div>
                       <div class="input checkbox">
-                        <input id="CustomerAgree" type="checkbox" class="tick-checkbox" required="required" />
+                        <input id="CustomerAgree" type="checkbox" class="tick-checkbox" required v-model="isChecked2"/>
                         <label><span>Subcribe for newsletter</span></label>
                       </div>
                     </div>
                     <div class="">
                       <div class="button-sm">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" @click="signup">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" @click="signup" >
                           Submit
                         </button>
                       </div>
@@ -425,13 +425,15 @@ export default {
       firstname: "",
       lastname: "",
       password: "",
-      phoneNumber: ""
+      phoneNumber: "",
+      isChecked: false,
+      isChecked2: false,
     };
   },
   methods: {
     async signup(e) {
       e.preventDefault();
-      if (this.password,this.email, this.firstname, this.lastname, this.phoneNumber) {
+      if (this.password,this.email, this.firstname, this.lastname, this.phoneNumber, this.isChecked, this.isChecked2) {
         const user = {
           email: this.email,
           firstname: this.firstname,
@@ -450,10 +452,16 @@ export default {
               icon: "success"
             });
           })
-          .catch((err) => console.log("err", err));
+          .catch((err) => 
+          {const errorMessage = (err.response.data)
+          swal({
+            text: errorMessage,
+            icon: "error"
+          })
+        });
       } else {
         swal({
-          text: "Password do not match",
+          text: "Please fill in all the required information",
           icon: "error"
         });
       }
