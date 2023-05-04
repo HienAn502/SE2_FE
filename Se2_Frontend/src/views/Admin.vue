@@ -140,7 +140,7 @@
               <div class="clearfix"></div>
             </section>
             <div class="view-all2">
-              <router-link to="/voucher">
+              <router-link to="/admin/voucher">
                 <button class="btn btn-primary" style="float: right">
                   View All
                 </button>
