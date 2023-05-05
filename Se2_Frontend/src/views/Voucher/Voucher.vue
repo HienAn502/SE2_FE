@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-12 text-left ms-2">
                 <h3 class="pt-3">Ours Vouchers</h3>
-                <router-link to="/admin/product/add">
+                <router-link to="/admin/voucher/add">
                   <button class="btn btn-primary plus-btn">
                     <i class="fa-solid fa-plus fa-2xl" style="
                         color: #ffffff;

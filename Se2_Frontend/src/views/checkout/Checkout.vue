@@ -15,7 +15,7 @@
   export default {
     data() {
       return {
-        stripeAPIToken: 'pk_test_51N3wTvL12NSAmRvsU78E4PGMH01JdECv4fLD8APY1qFQuB8JRz7cGYtsjp9tbQp1BuCTwHZ4ZWMerGZJyV19Gnsl00zneVk3X1',
+        stripeAPIToken: 'pk_test_51N1WMdEBdXkttEB10lv1oSP1IwOpgA0vaR0DRJz3HXGEIIYGRcb8kakcPy77mWsnzkbTzHQRLL7NXenkWBZSAb9S009lSrokNR',
         stripe: '',
         token: null,
         checkoutBodyArray: [],
