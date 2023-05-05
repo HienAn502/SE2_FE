@@ -83,6 +83,7 @@
 </template>
 <script>
 import axios from "axios";
+import swal from "sweetalert";
 export default {
   data() {
     return {
@@ -135,7 +136,15 @@ export default {
     },
     confirmOrder() {
       // TODO: handle order confirmation
-      this.$router.push({ name: 'Checkout' });
+      if (this.cartItem){
+        this.$router.push({ name: 'Checkout' });
+      }
+      else {
+        swal({
+            text: "Please pick a thing to order",
+            icon: "error"
+          })
+      }
     }
   },
   mounted() {

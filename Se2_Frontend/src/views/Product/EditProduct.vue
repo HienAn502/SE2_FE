@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label> Category</label>
                         <select class="form-control" v-model="product.categoryId" required>
-                            <option v-for="category in categories"
+                            <option v-for="category of categories"
                                     :key="category.id"
                                     :value="category.id"> {{category.categoryName}}</option>
 

@@ -29,7 +29,7 @@
                         </div>
                         <a>
                           <figure class="overflow-hidden">
-                            <img alt="Minimalist Beaded Two Tone Wedding Ring" class="img-fluid"
+                            <img class="img-fluid"
                               :src="product.imageUrl" />
                             <div class="text-center position-absolute btnquick-panel"></div>
                           </figure>
@@ -135,7 +135,7 @@ export default {
             icon: "success"
           })
           this.$router.push({ name: "Product" })
-          this.$router.go(0)
+          location.reload()
         }).catch(err => console.log('err', err));
       }
 
