@@ -193,12 +193,12 @@
                       <div class="price-hold" style="font-size: 15px">
                         <span class="cut-price">
                           <span class="price-font">$</span>
-                          40,000
+                          {{ product.price }}
                         </span>
                         &nbsp;
                         <span class="price text-danger">
                           <span class="price-font">$</span>
-                          {{ product.price }}
+                          {{ product.discount_price }}
                         </span>
                       </div>
                     </div>
@@ -246,7 +246,7 @@ export default {
         array[i] = array[j];
         array[j] = temp;
       }
-      return array.slice(0, 8);
+      return array;
     },
   },
 

@@ -29,7 +29,7 @@
                         </div>
                         <a>
                           <figure class="overflow-hidden">
-                            <img alt="Minimalist Beaded Two Tone Wedding Ring" class="img-fluid"
+                            <img class="img-fluid"
                               :src="product.imageUrl" />
                             <div class="text-center position-absolute btnquick-panel"></div>
                           </figure>
@@ -58,12 +58,12 @@
                               <div class="price-hold" style="font-size: 15px">
                                 <span class="cut-price">
                                   <span class="price-font">$</span>
-                                  {{ product.discount_price }}
+                                  {{ product.price }}
                                 </span>
                                 &nbsp;
                                 <span class="price text-danger">
                                   <span class="price-font">$</span>
-                                  {{ product.price }}
+                                  {{ product.discount_price }}
                                 </span>
                               </div>
                             </div>
@@ -135,7 +135,7 @@ export default {
             icon: "success"
           })
           this.$router.push({ name: "Product" })
-          this.$router.go(0)
+          location.reload()
         }).catch(err => console.log('err', err));
       }
 
