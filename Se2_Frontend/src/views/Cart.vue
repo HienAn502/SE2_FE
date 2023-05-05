@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-12 text-center">
         <h3 class="pt-3">
-          Shopping cart
+          Shopping bag
         </h3>
       </div>
     </div>
 
     <!-- loop over the cart items and display -->
-
+    <p v-if="cartItems.length === 0" class="mt-5 mb-5 text-center">Your shopping bag is empty.</p>
     <div
       v-for="cartItem in cartItems"
       :key="cartItem.id"

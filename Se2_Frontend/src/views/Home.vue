@@ -109,7 +109,7 @@
   </section>
   <section class="home-category-hold">
     <div class="row no-gutters mobile-fullwidth">
-      <div class="col-md-4 col-sm-4 col-6 col-xs-12"  v-for="category in categories"
+      <div class="col-md-4 col-sm-4 col-6 col-xs-12"  v-for="category in categories.slice(0,3)"
           :key="category.id">
         <div
           class="clearfix text-center home-category"
