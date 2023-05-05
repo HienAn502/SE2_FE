@@ -359,8 +359,6 @@ export default {
         const result = this.keyword
         axios.get(`http://localhost:8080/product/search/?keyword=${result}`).then((res) =>{
           this.searchItem = res.data
-          console.log(res.data)
-          
           this.$router.push({ 
           name: "Result" ,
           params: { keyword: this.keyword } });

@@ -5,6 +5,7 @@
         <div class="col-12">
           <div class="text-center mb-3 heading"><h2>Search Results</h2></div>
         </div>
+        <p v-if="JSON.stringify(items) === '[]'" class="text-center">Sorry, no results matched your search for <strong>"{{ this.keyword }}"</strong></p>
         <div class="col-12">
           <div
             class="align-middle text-center d-inline"
@@ -136,7 +137,7 @@ import axios from 'axios'
 export default {
         data() {
             return {
-                items: null,
+                items: [],
                 keyword: null
             }
         },
