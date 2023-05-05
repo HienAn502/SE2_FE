@@ -6,6 +6,7 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import SignUp from "../components/SignUp.vue"
 import Login from "../components/Login.vue"
+import SearchProduct from "../views/product/SearchProduct.vue"
 import AddCategory from "../views/Category/AddCategory.vue"
 import EditCategory from "../views/Category/EditCategory.vue"
 import Category from "../views/Category/Category.vue"
@@ -40,6 +41,11 @@ const routes = [{
     {
         path: '/about',
         component: About
+    },
+    {
+        path: '/product/search/:keyword',
+        name: "Result",
+        component: SearchProduct
     },
     // sign up and signin
     {

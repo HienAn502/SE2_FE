@@ -43,11 +43,7 @@
           </div>
           <div class="row d-flex align-items-center mobile-logo">
             <div class="col-0 col-md-4 col-lg-3">
-              <form
-                action="/products/search"
-                class="form-search"
-                id="ProductsSearchForm"
-              >
+             
                 <div id="searchbar" class="clearfix searchbar srch-pos-left">
                   <div class="input-group">
                     <input
@@ -55,12 +51,16 @@
                       class="form-control search-input rounded-0 ui-autocomplete-input"
                       placeholder="Search keywords..."
                       type="text"
+                      v-model="keyword"
+                   
                     />
                     <div class="input-group-append">
                       <button
                         type="submit"
                         class="btn btn-primary btn-sm rounded-0"
                         id="search_submit"
+                        @click="search"
+                     
                       >
                         <svg
                           class="ico-search"
@@ -80,7 +80,7 @@
                     </div>
                   </div>
                 </div>
-              </form>
+             
             </div>
             <div class="col-7 col-md-4 col-lg-6">
               <div class="logo-hold logo-pos-center">
@@ -111,6 +111,7 @@
                       fill="none"
                       stroke-linecap="round"
                       stroke-linejoin="round"
+                      
                     >
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -340,15 +341,31 @@
   </header>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
-  props: ["cartCount","categories","products"],
+  props: ["cartCount","categories","products","baseURL"],
   data() {
     return {
       token:null,
-      lastname: ""
+      lastname: "",
+      keyword: "",
+      searchItem: ""
     };
   },
   methods: {
+    search(){
+      
+        const result = this.keyword
+        axios.get(`http://localhost:8080/product/search/?keyword=${result}`).then((res) =>{
+          this.searchItem = res.data
+          console.log(res.data)
+          
+          this.$router.push({ 
+          name: "Result" ,
+          params: { keyword: this.keyword } });
+    })
+    },
     logout() {
       // Remove the  and 'username' items from Local Storage
       localStorage.removeItem("token")
@@ -369,6 +386,7 @@ export default {
   mounted(){
     this.token = localStorage.getItem("token");
     this.lastname = localStorage.getItem("user_lastname")
+    
   }
 };
 </script>

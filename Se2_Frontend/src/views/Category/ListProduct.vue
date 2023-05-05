@@ -67,6 +67,46 @@
             </span>
           </div>
         </div>
+
+        
+        <!--search-->
+        <div id="searchbar" class="searchbar custom-search">
+                  <div class="input-group">
+                    <input
+                      id="keyword"
+                      class="form-control search-input rounded-0 ui-autocomplete-input"
+                      placeholder="Search keywords..."
+                      type="text"
+                      v-model="searchTerm"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        @click = "search"
+                        type="submit"
+                        class="btn btn-primary btn-sm rounded-0"
+                        id="search_submit"
+                      >
+                        <svg
+                          class="ico-search"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          height="20"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+          </div>
+      
+        
+        <!--sort-->
         <div class="position-relative d-inline-block select-hold align-top">
           <div class="input select">
             <select
@@ -193,12 +233,12 @@
                       <div class="price-hold" style="font-size: 15px">
                         <span class="cut-price">
                           <span class="price-font">$</span>
-                          {{ product.price }}
+                          40,000
                         </span>
                         &nbsp;
                         <span class="price text-danger">
                           <span class="price-font">$</span>
-                          {{ product.discount_price }}
+                          {{ product.price }}
                         </span>
                       </div>
                     </div>
@@ -223,7 +263,9 @@ export default {
   data() {
     return {
       ListProduct: "",
-      sortType: "default"
+      sortType: "default",
+      searchTerm:"",
+      results: "",
     };
   },
   props: ["categories", "baseURL"],
@@ -233,6 +275,7 @@ export default {
         .get(`${this.baseURL}category/${this.categoryName}`)
         .then((res) => {
           this.ListProduct = res.data;
+          this.results = this.ListProduct
         })
         .catch((err) => console.log("err", err));
     },
@@ -248,12 +291,18 @@ export default {
       }
       return array;
     },
+
+    search(){
+    const term = this.searchTerm.toLowerCase()
+    this.results = this.ListProduct.filter(product =>
+    product.name.toLowerCase().includes(term))
+  }
   },
 
   computed: {
     sortedItems() {
       // Lấy các sản phẩm
-      let items = this.ListProduct;
+      let items = this.results;
 
       // Kiểm tra loại sắp xếp được chọn
       if (this.sortType === "price_low_high") {
@@ -277,7 +326,7 @@ export default {
       return b.name.localeCompare(a.name);
       });
       } else{
-        return items;
+        return this.mix(items);
       }
       },
       },	
@@ -286,7 +335,7 @@ export default {
     this.categoryName = this.$route.params.categoryName;
     this.getProductList();
   }
-};
+}
 </script>
 
 
