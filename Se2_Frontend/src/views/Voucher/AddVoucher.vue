@@ -25,7 +25,7 @@
                         <label for="" class="mg-text">Voucher Rate</label>
                         <input type="number" class="form-control" v-model="rate"/>    
                     </div>
-                    <button type="button" class="btn btn-primary" @click = "addVoucher">Submit</button>
+                    <button type="button" class="btn btn-primary" @click.prevent = "addVoucher">Submit</button>
                 </form>
             </div>
         </div>
@@ -64,7 +64,9 @@ export default{
                     icon: "success",
                     closeOnClickOutside: false,
                 })
-                this.$router.push('/admin/voucher');
+                this.$emit("fetchData")
+                this.$router.push({name : "Voucher"});
+                
             }).catch((err) => {
                 console.log("err", err);
             })

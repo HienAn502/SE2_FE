@@ -146,7 +146,7 @@ export default {
             icon: "success"
           })
           this.$router.push({ name: "Voucher" })
-          this.$router.go(0)
+          window.location.reload()
         }).catch(err => console.log('err', err));
       }
 
