@@ -21,7 +21,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Quantity</span>
                         </div>
-                        <input class="form-control" type="number" v-model="quantity"/>
+                        <input class="form-control" type="number" v-model="quantity" min="1"/>
                     </div>
                     <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.id)">
                         Add to Cart

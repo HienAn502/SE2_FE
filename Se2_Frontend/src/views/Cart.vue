@@ -77,13 +77,12 @@
     </div>
   </div>
                   <h5>Total : ${{ discountedTotalCost.toFixed(2) }}</h5>
-      <button type="button" class="btn btn-primary confirm" data-v-7da15e77="" @click="confirmOrder"> Confirm Order </button>
+      <button type="button" class="btn btn-primary confirm" data-v-7da15e77="" @click="confirmOrder()" v-if="!cartItems.length == 0"> Confirm Order </button>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-import swal from "sweetalert";
 export default {
   data() {
     return {
@@ -92,6 +91,7 @@ export default {
       totalCost: 0,
       vouchers: "",
       selectedVoucher: null,
+      
     };
   },
   props: ["baseURL"],
@@ -130,21 +130,13 @@ export default {
     },
     async getVoucher(){
         await axios.get(`${this.baseURL}voucher/`).then((res) => {
-          console.log(res.data)
           this.vouchers = res.data
         }).catch((err) => console.log("err", err));
     },
     confirmOrder() {
-      // TODO: handle order confirmation
-      if (this.cartItem){
+      // TODO: handle order confirmation 
         this.$router.push({ name: 'Checkout' });
-      }
-      else {
-        swal({
-            text: "Please pick a thing to order",
-            icon: "error"
-          })
-      }
+      
     }
   },
   mounted() {

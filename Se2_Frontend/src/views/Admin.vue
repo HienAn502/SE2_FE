@@ -33,13 +33,14 @@
                           <span class="price-hold">
                             <span class="cut-price">
                               <span class="price-font">₹</span>
-                              {{ product.discount_price }}
+                              {{ product.price }}
                             </span>
                             &nbsp;
                             <span class="price text-danger">
                               <span class="price-font">₹</span>
-                              {{ product.price }}
+                              {{ product.discount_price }}
                             </span>
+
                           </span>
                         </div>
                       </div>

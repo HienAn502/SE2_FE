@@ -43,44 +43,40 @@
           </div>
           <div class="row d-flex align-items-center mobile-logo">
             <div class="col-0 col-md-4 col-lg-3">
-             
-                <div id="searchbar" class="clearfix searchbar srch-pos-left">
-                  <div class="input-group">
-                    <input
-                      id="keyword"
-                      class="form-control search-input rounded-0 ui-autocomplete-input"
-                      placeholder="Search keywords..."
-                      type="text"
-                      v-model="keyword"
-                   
-                    />
-                    <div class="input-group-append">
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-sm rounded-0"
-                        id="search_submit"
-                        @click="search"
-                     
+              <div id="searchbar" class="clearfix searchbar srch-pos-left">
+                <div class="input-group">
+                  <input
+                    id="keyword"
+                    class="form-control search-input rounded-0 ui-autocomplete-input"
+                    placeholder="Search keywords..."
+                    type="text"
+                    v-model="keyword"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-sm rounded-0"
+                      id="search_submit"
+                      @click.prevent="search"
+                    >
+                      <svg
+                        class="ico-search"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        height="20"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                       >
-                        <svg
-                          class="ico-search"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          height="20"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          <circle cx="11" cy="11" r="8"></circle>
-                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                      </button>
-                    </div>
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
                   </div>
                 </div>
-             
+              </div>
             </div>
             <div class="col-7 col-md-4 col-lg-6">
               <div class="logo-hold logo-pos-center">
@@ -111,7 +107,6 @@
                       fill="none"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      
                     >
                       <circle cx="11" cy="11" r="8"></circle>
                       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -153,9 +148,7 @@
                     <router-link to="/login" v-if="!token">
                       Login or
                     </router-link>
-                    <router-link to="/signup" v-if="!token">
-                      Signup
-                    </router-link>
+                    <router-link to="/signup" v-if="!token">Signup</router-link>
                   </div>
                   <div v-if="token">
                     <div class="dropdown">
@@ -173,11 +166,15 @@
                         class="dropdown-menu"
                         aria-labelledby="dropdownMenuButton"
                       >
-                      <router-link class="dropdown-item" :to="{name: 'Admin'}">Admin</router-link>
+                        <router-link
+                          class="dropdown-item"
+                          :to="{ name: 'Admin' }"
+                        >
+                          Admin
+                        </router-link>
                         <a class="dropdown-item" @click.prevent="logout">
                           Logout
                         </a>
-                        
                       </div>
                     </div>
                   </div>
@@ -208,11 +205,15 @@
                 <div class="shoppingcart">
                   <div id="div-drop-cart" class="position-relative">
                     <div class="position-relative cd-cart-trigger">
-                      <router-link to="/cart" class="d-block px-1 cart-icon align-items-center"  title="Shopping Bag">
+                      <router-link
+                        to="/cart"
+                        class="d-block px-1 cart-icon align-items-center"
+                        title="Shopping Bag"
+                      >
                         <span
                           class="position-absolute rounded-circle badge badge-primary"
                         >
-                        {{ cartCount }}
+                          {{ cartCount }}
                         </span>
                         <svg
                           class="mx-auto d-block"
@@ -290,8 +291,8 @@
                   <!-- <a href="/" class="menu-link">Home</a> -->
                   <router-link to="/" class="menu-link">Home</router-link>
                 </li>
-                <li class="menu-item" >
-                  <div class="dropdown show" >
+                <li class="menu-item">
+                  <div class="dropdown show">
                     <a
                       class="dropdown-toggle menu-link"
                       href="#"
@@ -299,7 +300,6 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
-                      
                     >
                       Categories
                     </a>
@@ -307,18 +307,19 @@
                     <div
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuLink"
-                     
                     >
-                      <router-link 
-                      v-for="category in categories" 
-                      :key="category.id"
-                      :to="{name : 'ListProduct', params:{categoryName : category.categoryName} }" 
-                      class="dropdown-item" 
-                      @click="forcePageReload(category.categoryName)"
+                      <router-link
+                        v-for="category in categories"
+                        :key="category.id"
+                        :to="{
+                          name: 'ListProduct',
+                          params: { categoryName: category.categoryName }
+                        }"
+                        class="dropdown-item"
+                        @click="forcePageReload(category.categoryName)"
                       >
                         <p>{{ category.categoryName }}</p>
                       </router-link>
-                     
                     </div>
                   </div>
                 </li>
@@ -341,50 +342,62 @@
   </header>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  props: ["cartCount","categories","products","baseURL"],
+  props: ["cartCount", "categories", "products", "baseURL"],
   data() {
     return {
-      token:null,
+      token: null,
       lastname: "",
       keyword: "",
       searchItem: ""
     };
   },
   methods: {
-    search(){
-      
-        const result = this.keyword
-        axios.get(`http://localhost:8080/product/search/?keyword=${result}`).then((res) =>{
-          this.searchItem = res.data
-          this.$router.push({ 
-          name: "Result" ,
-          params: { keyword: this.keyword } });
-    })
+    search() {
+      const result = this.keyword;
+      axios
+        .get(`http://localhost:8080/product/search/?keyword=${result}`)
+        .then((res) => {
+          this.searchItem = res.data;
+          this.$router
+            .push({
+              name: "Result",
+              params: { keyword: this.keyword }
+            })
+            .then(() => {
+              window.location.reload();
+            });
+        });
     },
     logout() {
       // Remove the  and 'username' items from Local Storage
-      localStorage.removeItem("token")
+      localStorage.removeItem("token");
       this.token = null;
       swal({
         text: "Logged you out. Visit again",
-        icon: "success",
+        icon: "success"
       });
       this.$emit("resetCartCount");
       // Redirect to the login page or any other page
       this.$router.push("/");
-      
     },
     forcePageReload(categoryName) {
-      location.replace("http://127.0.0.1:5173/category/show/"+categoryName);
-    },
+      const cate_name = categoryName
+      this.$router
+            .push({
+              name: 'ListProduct',
+              params: { categoryName: cate_name }
+            })
+            .then(() => {
+              window.location.reload();
+            });
+    }
   },
-  mounted(){
+  mounted() {
     this.token = localStorage.getItem("token");
-    this.lastname = localStorage.getItem("user_lastname")
-    
+    this.lastname = localStorage.getItem("user_lastname");
   }
 };
 </script>
