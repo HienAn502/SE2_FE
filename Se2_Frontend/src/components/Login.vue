@@ -122,13 +122,16 @@ export default {
                   </div>
 
                   <div class="form-group">
-                    <button
+                    <div  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-item">
+                      <button
                       type="submit"
                       class="btn btn-primary btn-lg btn-block"
                       @click="signin"
                     >
                       Sign In
                     </button>
+                    </div>
+                
                   </div>
 
                   <div class="form-group forgot-password">

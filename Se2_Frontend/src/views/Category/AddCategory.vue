@@ -61,6 +61,7 @@ export default{
                     text:'Category added successfully',
                     icon:'success',
                 })
+                this.$router.push({name: "Category"})
             })
             .catch((err)=> {
                 console.log(err);
